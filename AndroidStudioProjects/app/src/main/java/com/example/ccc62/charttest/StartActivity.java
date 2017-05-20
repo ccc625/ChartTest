@@ -6,25 +6,23 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ListView;
 
-import com.example.ccc62.charttest.chartList.ChartListAdapter;
 import com.example.ccc62.charttest.chartList.ChartListData;
+import com.example.ccc62.charttest.chartList.ChartListManager;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Timer;
 
 public class StartActivity extends AppCompatActivity
 {
     private static final int CHART_ACTIVITY = 101;
 
-    private ListView chartList;
     private Button btnStart;
+    private Button btnPreviousResult;
+    private Button btnInfoAll;
 
-    private ChartListAdapter chartListAdapter;
-    private ArrayList<ChartListData> chartListDatas;
+    private View.OnClickListener onClickListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -35,47 +33,45 @@ public class StartActivity extends AppCompatActivity
         init();
     }
 
-    @Override
-    protected void onStart()
-    {
-        super.onStart();
-
-        setChartList();
-    }
-
     private void init()
     {
-        chartListAdapter = new ChartListAdapter( this );
-
         initDisplayObject();
         initListener();
     }
 
     private void initDisplayObject()
     {
-        chartList = ( ListView ) findViewById( R.id.chartList );
         btnStart = ( Button ) findViewById( R.id.btnStart );
-    }
-
-    private void setChartList()
-    {
-        if( chartListDatas == null )
-            chartListDatas = new ArrayList<ChartListData>();
-
-        chartListAdapter.setChartListDatas( ( ArrayList<ChartListData> ) chartListDatas.clone() );
-        chartList.setAdapter( chartListAdapter );
+        btnPreviousResult = ( Button ) findViewById( R.id.btnPreviousResult );
+        btnInfoAll = ( Button ) findViewById( R.id.btnInfoAll );
     }
 
     private void initListener()
     {
-        btnStart.setOnClickListener(new View.OnClickListener() {
+        onClickListener = new View.OnClickListener() {
             @Override
-            public void onClick(View v)
+            public void onClick(View view)
             {
-                Intent intent = new Intent( getApplicationContext(), ChartActivity.class );
-                startActivityForResult( intent, CHART_ACTIVITY );
+                if (view.getId() == btnStart.getId())
+                {
+                    Intent intent = new Intent(getApplicationContext(), ChartActivity.class);
+                    startActivityForResult(intent, CHART_ACTIVITY);
+                }
+                else if (view.getId() == btnPreviousResult.getId())
+                {
+                    Intent intent = new Intent(getApplicationContext(), PreviousResultActivity.class);
+                    startActivity( intent );
+                }
+                else if (view.getId() == btnInfoAll.getId())
+                {
+
+                }
             }
-        });
+        };
+
+        btnStart.setOnClickListener( onClickListener );
+        btnPreviousResult.setOnClickListener( onClickListener );
+        btnInfoAll.setOnClickListener( onClickListener );
     }
 
     @Override
@@ -102,9 +98,7 @@ public class StartActivity extends AppCompatActivity
                 chartListData.setLineData2( lineData2 );
                 chartListData.setLineData3( lineData3 );
 
-                chartListDatas.add( chartListData );
-
-                setChartList();
+                ChartListManager.manager().addListData( chartListData );
             }
         }
     }

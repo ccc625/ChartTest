@@ -10,21 +10,32 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:background="#223344"
+    android:gravity="center_vertical"
     tools:context="com.example.ccc62.charttest.StartActivity">
 
     <Button
         android:id="@+id/btnStart"
-        android:layout_gravity="right"
         android:text="신규 측정"
         android:textSize="20dp"
         android:textStyle="bold"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <ListView
-        android:id="@+id/chartList"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-    </ListView>
+    <Button
+        android:id="@+id/btnPreviousResult"
+        android:text="이전 기록"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginTop="35dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
+    <Button
+        android:id="@+id/btnInfoAll"
+        android:text="분석 결과"
+        android:textSize="20dp"
+        android:textStyle="bold"
+        android:layout_marginTop="35dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </LinearLayout>

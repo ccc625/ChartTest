@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.example.ccc62.charttest.InfoActivity;
 import com.example.ccc62.charttest.OutputActivity;
 import com.example.ccc62.charttest.R;
 
@@ -55,7 +56,7 @@ public class ChartListItem extends LinearLayout
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent( mContext, OutputActivity.class);
+                Intent intent = new Intent( mContext, InfoActivity.class);
                 intent.putExtra( "arrLineData1", ( ArrayList<String> ) data.getLineData1().clone() );
                 intent.putExtra( "arrLineData2", ( ArrayList<String> ) data.getLineData2().clone() );
                 intent.putExtra( "arrLineData3", ( ArrayList<String> ) data.getLineData3().clone() );

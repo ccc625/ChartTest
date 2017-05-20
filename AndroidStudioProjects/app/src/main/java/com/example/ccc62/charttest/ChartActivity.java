@@ -48,6 +48,10 @@ public class ChartActivity extends AppCompatActivity
     private LineData lineData2;
     private LineData lineData3;
 
+    private LineDataSet lineDataSet1;
+    private LineDataSet lineDataSet2;
+    private LineDataSet lineDataSet3;
+
     private int index;
 
     Handler h = new Handler();
@@ -168,21 +172,21 @@ public class ChartActivity extends AppCompatActivity
             line3.clear();
         }
 
-        LineDataSet lineDataSet1 = new LineDataSet( line1, "test" );
+        lineDataSet1 = new LineDataSet( line1, "test" );
         lineDataSet1.setColor(Color.RED);
         lineDataSet1.setCircleColor(Color.RED);
         lineDataSet1.setDrawCubic(true);
         lineDataSet1.setDrawFilled( false );
         lineDataSet1.setDrawValues( false );
 
-        LineDataSet lineDataSet2 = new LineDataSet( line2, "test" );
+        lineDataSet2 = new LineDataSet( line2, "test" );
         lineDataSet2.setColor(Color.BLUE);
         lineDataSet2.setCircleColor(Color.BLUE);
         lineDataSet2.setDrawCubic(true);
         lineDataSet2.setDrawFilled( false );
         lineDataSet2.setDrawValues( false );
 
-        LineDataSet lineDataSet3 = new LineDataSet( line3, "test" );
+        lineDataSet3 = new LineDataSet( line3, "test" );
         lineDataSet3.setColor(Color.GREEN);
         lineDataSet3.setCircleColor(Color.GREEN);
         lineDataSet3.setDrawCubic(true);
@@ -265,9 +269,6 @@ public class ChartActivity extends AppCompatActivity
     private void addXValue()
     {
         labels.add( "lable" + index );
-//        lineData1.addXValue("lable" + index);
-//        lineData2.addXValue("lable" + index);
-//        lineData3.addXValue("lable" + index);
     }
 
     private void addEntry()
@@ -288,11 +289,7 @@ public class ChartActivity extends AppCompatActivity
         arrLineData2.add( String.valueOf( value2 ) );
         arrLineData3.add( String.valueOf( value3 ) );
 
-//        if( index % 10 == 0 )
-        {
-            lineData1.addEntry( new Entry(Float.valueOf( String.valueOf(value1) ), index), 0 );
-        }
-
+        lineData1.addEntry( new Entry(Float.valueOf( String.valueOf(value1) ), index), 0 );
         lineData2.addEntry( new Entry(Float.valueOf( String.valueOf(value2) ), index), 0 );
         lineData3.addEntry( new Entry(Float.valueOf( String.valueOf(value3) ), index), 0 );
     }
