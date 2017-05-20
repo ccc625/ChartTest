@@ -6,8 +6,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.ccc62.charttest.R;
+
+import java.util.ArrayList;
 
 /**
  * Created by ccc62 on 2017-05-20.
@@ -16,6 +19,10 @@ import com.example.ccc62.charttest.R;
 public class InfoPulseFragment extends Fragment
 {
     private ViewGroup rootView;
+
+    private TextView txtAvePulse;
+
+    private double avePulse;
 
     public InfoPulseFragment()
     {
@@ -34,6 +41,33 @@ public class InfoPulseFragment extends Fragment
     {
         rootView = ( ViewGroup ) inflater.inflate( R.layout.fragment_info_pulse, container, false );
 
+        init();
+
         return rootView;
+    }
+
+    private void init()
+    {
+        initDisplayObject();
+    }
+
+    private void initDisplayObject()
+    {
+        txtAvePulse = ( TextView ) rootView.findViewById( R.id.txtAvePulse );
+
+        txtAvePulse.setText( "평균 심박수 : " + Double.toString( avePulse ).substring(0, 6) );
+    }
+
+    public void setData( ArrayList<String> inData )
+    {
+        double aveValues = 0;
+
+        for( int i = 0; i < inData.size(); i++ )
+        {
+            aveValues += Double.valueOf( inData.get( i ) );
+        }
+        aveValues = aveValues / inData.size();
+
+        avePulse = aveValues;
     }
 }

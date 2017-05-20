@@ -18,7 +18,8 @@
         <activity android:name=".PreviousResultActivity" />
         <activity android:name=".ChartActivity" />
         <activity android:name=".OutputActivity" />
-        <activity android:name=".InfoActivity"></activity>
+        <activity android:name=".InfoActivity"
+            android:screenOrientation="portrait"></activity>
         <activity android:name=".StartActivity"></activity>
     </application>
 

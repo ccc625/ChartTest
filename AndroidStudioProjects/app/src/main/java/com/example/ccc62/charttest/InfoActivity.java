@@ -26,7 +26,6 @@ public class InfoActivity extends AppCompatActivity
     private InfoBreathFragment infoBreathFragment;
     private InfoPulseFragment infoPulseFragment;
     private InfoOximeterFragment infoOximeterFragment;
-    private InfoAllFragment infoAllFragment;
     private Fragment currentFragment;
 
     private Button btnInfoBreath;
@@ -47,7 +46,6 @@ public class InfoActivity extends AppCompatActivity
     private void init()
     {
         fragmentManager = getSupportFragmentManager();
-        fragmentTransaction = fragmentManager.beginTransaction();
 
         initDisplayObject();
         initListener();
@@ -61,6 +59,9 @@ public class InfoActivity extends AppCompatActivity
         if( currentFragment != null && ( currentFragment.getId() == fragment.getId() ) )
             return;
 
+        currentFragment = fragment;
+
+        fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace( fragmentContainer.getId(), fragment );
         fragmentTransaction.commit();
     }
@@ -76,7 +77,6 @@ public class InfoActivity extends AppCompatActivity
         infoBreathFragment = new InfoBreathFragment();
         infoPulseFragment = new InfoPulseFragment();
         infoOximeterFragment = new InfoOximeterFragment();
-        infoAllFragment = new InfoAllFragment();
     }
 
     private void initListener()
@@ -107,10 +107,12 @@ public class InfoActivity extends AppCompatActivity
 
     private void setData()
     {
-        ArrayList<String> lineData1 = getIntent().getStringArrayListExtra( "arrLineData1" );
-        ArrayList<String> lineData2 = getIntent().getStringArrayListExtra( "arrLineData2" );
-        ArrayList<String> lineData3 = getIntent().getStringArrayListExtra( "arrLineData3" );
+        ArrayList<String> breathData = getIntent().getStringArrayListExtra( "arrLineData1" );
+        ArrayList<String> oxiData = getIntent().getStringArrayListExtra( "arrLineData2" );
+        ArrayList<String> pulseData = getIntent().getStringArrayListExtra( "arrLineData3" );
 
-        infoBreathFragment.setData( lineData1 );
+        infoBreathFragment.setData( breathData );
+        infoOximeterFragment.setData( oxiData );
+        infoPulseFragment.setData( pulseData );
     }
 }

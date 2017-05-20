@@ -9,10 +9,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/infoOximeterLinChart"
+    <com.github.mikephil.charting.charts.PieChart
+        android:id="@+id/infoOximeterPieChart"
         android:layout_width="match_parent"
         android:layout_height="300dp">
 
-    </com.github.mikephil.charting.charts.LineChart>
+    </com.github.mikephil.charting.charts.PieChart>
 </LinearLayout>
